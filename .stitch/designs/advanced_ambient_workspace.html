@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ambient Clinical Intelligence | Workspace</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1a1c1c",
+                        "on-surface-variant": "#47464b",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-fixed-variant": "#47464a",
+                        "outline-variant": "#c8c5cb",
+                        "on-primary-fixed": "#1b1b1e",
+                        "surface-variant": "#e2e2e2",
+                        "inverse-surface": "#2f3131",
+                        "background": "#f9f9f9",
+                        "soft-graphite": "#3F3F46",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e8e8e8",
+                        "primary": "#000000",
+                        "outline": "#77767b",
+                        "on-tertiary-fixed-variant": "#46464e",
+                        "on-secondary-fixed-variant": "#454747",
+                        "tertiary-fixed": "#e3e1ec",
+                        "secondary-container": "#dfe0df",
+                        "on-tertiary-fixed": "#1a1b22",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#F4F4F5",
+                        "on-error-container": "#93000a",
+                        "clinical-error": "#DC2626",
+                        "secondary-fixed-dim": "#c6c7c6",
+                        "on-tertiary-container": "#83838c",
+                        "on-error": "#ffffff",
+                        "primary-container": "#1b1b1e",
+                        "inverse-on-surface": "#f0f1f1",
+                        "primary-fixed-dim": "#c8c5ca",
+                        "inverse-primary": "#c8c5ca",
+                        "surface": "#f9f9f9",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary-container": "#616362",
+                        "on-primary-container": "#858387",
+                        "surface-dim": "#dadada",
+                        "tertiary-container": "#1a1b22",
+                        "surface-bright": "#f9f9f9",
+                        "smoke-glass": "rgba(255, 255, 255, 0.75)",
+                        "secondary": "#5d5f5e",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "secondary-fixed": "#e2e2e2",
+                        "tertiary-fixed-dim": "#c6c5cf",
+                        "muted-slate": "#71717A",
+                        "primary-fixed": "#e4e1e6",
+                        "warm-white": "#FAFAF9",
+                        "surface-container-low": "#f3f3f4",
+                        "surface-tint": "#5f5e61"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "panel-margin": "48px",
+                        "gutter": "32px",
+                        "max-width": "1200px",
+                        "base-unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "headline-sm": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "display-lg": ["Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #FAFAF9; color: #18181B; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .smoke-glass-effect {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, rgba(244, 244, 245, 0) 0%, rgba(244, 244, 245, 1) 50%, rgba(244, 244, 245, 0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .reveal-text {
+            animation: reveal 1.5s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        @keyframes reveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sparkline {
+            height: 12px;
+            width: 48px;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-surface-variant">
+<!-- Top Navigation Shell (Shared Components Hierarchy) -->
+<header class="fixed top-0 w-full z-40 bg-transparent flex justify-between items-center px-panel-margin py-gutter w-full max-w-max-width mx-auto">
+<h1 class="text-headline-sm font-headline-sm text-on-surface tracking-tight">Ambient Clinical Intelligence</h1>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-8 text-label-caps font-label-caps">
+<a class="text-primary font-bold hover:text-primary transition-colors duration-200" href="#">WORKSPACE</a>
+<a class="text-muted-slate hover:text-primary transition-colors duration-200" href="#">PATIENTS</a>
+<a class="text-muted-slate hover:text-primary transition-colors duration-200" href="#">PROTOCOLS</a>
+</nav>
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Main Fluid Canvas -->
+<main class="relative pt-32 pb-48 px-panel-margin max-w-max-width mx-auto space-y-32">
+<!-- 1. Stable State: Patient Summary -->
+<section class="reveal-text" id="patient-summary">
+<div class="space-y-6 max-w-2xl">
+<div class="flex items-baseline gap-4">
+<h2 class="font-display-lg text-display-lg text-on-background">Sarah Jenkins</h2>
+<span class="font-body-lg text-body-lg text-muted-slate">42F, Post-Op Day 2</span>
+</div>
+<p class="font-body-lg text-body-lg leading-relaxed text-soft-graphite">
+                    Patient is recovering from an uncomplicated laparoscopic cholecystectomy. Currently resting comfortably. Vitals are stable with a heart rate of 
+                    <span class="font-mono font-bold text-on-background">72</span>
+<svg class="sparkline" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 100 20"><path d="M0 15 Q 10 5, 20 12 T 40 10 T 60 14 T 80 8 T 100 12"></path></svg>
+                    bpm and SpO2 at 
+                    <span class="font-mono font-bold text-on-background">98%</span>
+<svg class="sparkline" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 100 20"><path d="M0 10 Q 15 8, 30 12 T 50 10 T 70 11 T 85 9 T 100 10"></path></svg>
+                    on room air. Pain is managed with PRN analgesics, reported at 2/10.
+                </p>
+</div>
+</section>
+<!-- 2. AI Reasoning In Progress: Intelligence Stream -->
+<section class="relative" id="ai-reasoning">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="relative w-2 h-2 rounded-full bg-soft-graphite animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-muted-slate tracking-widest uppercase">Analyzing Laboratory Data</span>
+</div>
+<div class="space-y-3">
+<div class="h-4 w-3/4 shimmer rounded-full opacity-20"></div>
+<div class="h-4 w-1/2 shimmer rounded-full opacity-10"></div>
+</div>
+</div>
+</section>
+<!-- 3. Streaming Insight & Evidence Provenance Overlay -->
+<section class="relative group" id="streaming-insight">
+<div class="flex flex-col md:flex-row gap-12 items-start">
+<div class="flex-1 space-y-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="neurology">neurology</span>
+<span class="font-label-caps text-label-caps text-on-surface">CLINICAL INFERENCE</span>
+<div class="px-2 py-0.5 rounded bg-surface-container text-muted-slate text-[10px] font-bold">94% CONFIDENCE</div>
+</div>
+<div class="space-y-4">
+<p class="font-headline-md text-headline-md text-soft-graphite leading-snug reveal-text" style="animation-delay: 0.2s;">
+                            Based on current trends, the patient’s renal function is showing signs of early <span class="text-on-background font-semibold">hypokalemic shift</span>. 
+                            The recent lab panels from 06:00 show a gradual decline in Serum Potassium.
+                        </p>
+<p class="font-body-lg text-body-lg text-muted-slate reveal-text" style="animation-delay: 0.4s;">
+                            Recommendation: Consider oral potassium supplementation and repeat BMP in 4 hours. Ensure hydration remains at 125ml/hr.
+                        </p>
+</div>
+</div>
+<!-- Evidence Provenance (Smoke-glass overlay appearance) -->
+<aside class="w-full md:w-80 smoke-glass-effect p-6 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.04)] reveal-text" style="animation-delay: 0.6s;">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-[16px] text-muted-slate" data-icon="book">book</span>
+<span class="font-label-caps text-label-caps text-muted-slate">SOURCE PROVENANCE</span>
+</div>
+<div class="space-y-4">
+<div class="p-3 bg-white/50 rounded-lg">
+<p class="font-body-sm text-body-sm text-on-surface mb-1">Standard Post-Op Protocol #402</p>
+<p class="text-[12px] text-muted-slate italic">"Early detection of postoperative electrolyte imbalance..."</p>
+</div>
+<div class="p-3 bg-white/50 rounded-lg">
+<p class="font-body-sm text-body-sm text-on-surface mb-1">EHR: Lab History</p>
+<p class="text-[12px] text-muted-slate italic">K+ 4.1 (Pre-op) → 3.6 (06:00)</p>
+</div>
+</div>
+</aside>
+</div>
+</section>
+<!-- 4. Escalating Anomaly -->
+<section class="relative py-12 px-8 -mx-8 bg-on-background text-white rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.01]" id="anomaly">
+<div class="absolute inset-0 bg-gradient-to-br from-soft-graphite/20 to-transparent"></div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-end gap-8">
+<div class="space-y-4 max-w-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-clinical-error animate-pulse" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-caps text-label-caps text-white/60 tracking-widest uppercase">Urgent Contextual Shift</span>
+</div>
+<h3 class="font-display-lg text-display-lg-mobile md:text-headline-md font-bold leading-tight">
+                        Potassium levels have dropped to <span class="text-error-container underline underline-offset-8">3.2 mEq/L</span>
+</h3>
+<p class="font-body-lg text-body-lg text-white/80">
+                        This reflects a 12% decrease in the last 2 hours. Compensatory tachycardia may follow if unaddressed.
+                    </p>
+</div>
+<!-- 6. Clinician Override -->
+<div class="flex gap-4">
+<button class="bg-white text-on-background px-6 py-3 rounded-xl font-label-caps text-label-caps hover:bg-white/90 transition-all active:scale-95 shadow-xl">
+                        ADJUST PLAN
+                    </button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-xl font-label-caps text-label-caps hover:bg-white/20 transition-all active:scale-95">
+                        DISMISS
+                    </button>
+</div>
+</div>
+</section>
+<!-- 5. Future State Simulation / Ambient Workspace Expansion -->
+<section class="max-w-3xl opacity-40 hover:opacity-100 transition-opacity duration-700">
+<p class="font-body-lg text-body-lg text-soft-graphite">
+                Additional observations scheduled for <span class="font-mono text-on-background">14:00</span>. Physical therapy consult pending verification of mobility status.
+            </p>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Shared Components Execution) -->
+<nav class="fixed bottom-12 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center space-x-2 bg-smoke-glass backdrop-blur-xl rounded-full px-6 py-3 w-auto min-w-[320px] shadow-[0_20px_40px_rgba(0,0,0,0.06)]" id="main-nav">
+<!-- Active: Workspace -->
+<a class="flex items-center gap-2 bg-on-background dark:bg-on-primary text-white dark:text-primary rounded-full px-4 py-2 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="clinical_notes">clinical_notes</span>
+<span class="font-label-caps text-label-caps">Workspace</span>
+</a>
+<a class="flex items-center gap-2 text-soft-graphite dark:text-on-primary-fixed-variant px-4 py-2 hover:bg-surface-variant/50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="history">history</span>
+<span class="font-label-caps text-label-caps">Timeline</span>
+</a>
+<a class="flex items-center gap-2 text-soft-graphite dark:text-on-primary-fixed-variant px-4 py-2 hover:bg-surface-variant/50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Patient</span>
+</a>
+<a class="flex items-center gap-2 text-soft-graphite dark:text-on-primary-fixed-variant px-4 py-2 hover:bg-surface-variant/50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="neurology">neurology</span>
+<span class="font-label-caps text-label-caps">Insights</span>
+</a>
+<a class="flex items-center gap-2 text-soft-graphite dark:text-on-primary-fixed-variant px-4 py-2 hover:bg-surface-variant/50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps">Search</span>
+</a>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for fluid reveals
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-text');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Parallax effect on scroll for spatial intelligence
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const aside = document.querySelector('aside');
+                if (aside) {
+                    aside.style.transform = `translateY(${scrolled * 0.05}px)`;
+                }
+            });
+
+            // Smooth palette interaction
+            const navItems = document.querySelectorAll('#main-nav a');
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navItems.forEach(i => {
+                        i.classList.remove('bg-on-background', 'text-white', 'rounded-full', 'px-4', 'py-2');
+                        i.classList.add('text-soft-graphite');
+                    });
+                    item.classList.add('bg-on-background', 'text-white', 'rounded-full', 'px-4', 'py-2');
+                    item.classList.remove('text-soft-graphite');
+                });
+            });
+        });
+    </script>
+</body></html>

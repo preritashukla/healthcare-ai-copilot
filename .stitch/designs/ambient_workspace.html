@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aether AI | Sarah Jenkins - Ambient Workspace</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "smoke-glass": "rgba(255, 255, 255, 0.75)",
+                        "surface": "#f9f9f9",
+                        "primary": "#000000",
+                        "on-tertiary-container": "#83838c",
+                        "tertiary": "#000000",
+                        "on-primary-fixed": "#1b1b1e",
+                        "secondary-fixed": "#e2e2e2",
+                        "clinical-error": "#DC2626",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#47464a",
+                        "warm-white": "#FAFAF9",
+                        "surface-container": "#eeeeee",
+                        "primary-fixed-dim": "#c8c5ca",
+                        "tertiary-fixed": "#e3e1ec",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#616362",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#5f5e61",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-container-high": "#e8e8e8",
+                        "on-tertiary-fixed-variant": "#46464e",
+                        "secondary": "#5d5f5e",
+                        "secondary-container": "#dfe0df",
+                        "tertiary-container": "#1a1b22",
+                        "on-surface-variant": "#47464b",
+                        "secondary-fixed-dim": "#c6c7c6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f3f3f4",
+                        "surface-dim": "#dadada",
+                        "muted-slate": "#71717A",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-primary": "#c8c5ca",
+                        "on-primary-container": "#858387",
+                        "background": "#f9f9f9",
+                        "surface-variant": "#e2e2e2",
+                        "outline-variant": "#c8c5cb",
+                        "primary-container": "#1b1b1e",
+                        "inverse-on-surface": "#f0f1f1",
+                        "outline": "#77767b",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "on-background": "#1a1c1c",
+                        "on-surface": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c6c5cf",
+                        "surface-bright": "#f9f9f9",
+                        "primary-fixed": "#e4e1e6",
+                        "soft-graphite": "#3F3F46",
+                        "on-tertiary-fixed": "#1a1b22"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max-width": "1200px",
+                        "gutter": "32px",
+                        "panel-margin": "48px",
+                        "base-unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "headline-sm": ["18px", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FAFAF9;
+            color: #18181B;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .canvas-entrance {
+            animation: fadeInSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sparkline-container {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 16px;
+            padding: 0 4px;
+        }
+        .spark-bar {
+            width: 2px;
+            background: #D4D4D8;
+            border-radius: 1px;
+        }
+        .spark-bar.active {
+            background: #18181B;
+        }
+    </style>
+</head>
+<body class="font-body-lg text-body-lg min-h-screen selection:bg-primary-fixed selection:text-primary">
+<!-- Ambient Canvas -->
+<main class="max-w-[1200px] mx-auto px-gutter pt-24 pb-48 canvas-entrance">
+<!-- Header Section -->
+<header class="mb-panel-margin">
+<h1 class="font-display-lg text-display-lg font-light tracking-tight text-on-surface opacity-90">
+                Sarah Jenkins, 42F — <span class="text-muted-slate">Post-op Day 2</span>
+</h1>
+</header>
+<!-- Section 1: Clinical Trajectory -->
+<section class="mb-panel-margin space-y-4 max-w-3xl">
+<h2 class="font-label-caps text-label-caps text-muted-slate uppercase">Clinical Trajectory</h2>
+<p class="font-headline-md text-headline-md text-soft-graphite leading-relaxed">
+                The patient is transitioning effectively into the sub-acute phase following a successful robotic-assisted cholecystectomy. Her mobility has increased by 40% since yesterday evening, and she reports manageable pain levels without the need for intensive opioid intervention. Post-operative inflammation markers are trending toward baseline, suggesting a low likelihood of immediate complications.
+            </p>
+</section>
+<!-- Section 2: Vital Intelligence -->
+<section class="mb-panel-margin space-y-4">
+<h2 class="font-label-caps text-label-caps text-muted-slate uppercase">Vital Intelligence</h2>
+<div class="flex flex-wrap gap-x-12 gap-y-6 items-baseline">
+<div class="flex items-center gap-3">
+<span class="font-body-lg text-body-lg text-soft-graphite">Heart Rate: <span class="font-bold text-on-surface">72 bpm</span></span>
+<div aria-hidden="true" class="sparkline-container">
+<div class="spark-bar h-2"></div>
+<div class="spark-bar h-3"></div>
+<div class="spark-bar h-4"></div>
+<div class="spark-bar h-2"></div>
+<div class="spark-bar h-5 active"></div>
+<div class="spark-bar h-4"></div>
+<div class="spark-bar h-3"></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-body-lg text-body-lg text-soft-graphite">SpO2: <span class="font-bold text-on-surface">98%</span></span>
+<div aria-hidden="true" class="sparkline-container">
+<div class="spark-bar h-4"></div>
+<div class="spark-bar h-4 active"></div>
+<div class="spark-bar h-4"></div>
+<div class="spark-bar h-4"></div>
+<div class="spark-bar h-4"></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-body-lg text-body-lg text-soft-graphite">Mean BP: <span class="font-bold text-on-surface">94 mmHg</span></span>
+</div>
+</div>
+</section>
+<!-- Section 3: AI Risk Assessment -->
+<section class="mb-panel-margin space-y-4 max-w-3xl">
+<h2 class="font-label-caps text-label-caps text-muted-slate uppercase">AI Risk Assessment</h2>
+<p class="font-body-lg text-body-lg text-soft-graphite leading-relaxed">
+                Predictive analytics indicate a <span class="text-primary font-medium">92% probability</span> of discharge within the next 24 hours. Electrolyte stability remains optimal, with Potassium (4.1 mEq/L) and Magnesium (2.0 mg/dL) both within therapeutic ranges. There are no indications of pulmonary edema or localized site infection. The AI agent recommends transitioning to oral medications for discharge planning.
+            </p>
+</section>
+<!-- Atmospheric Visual Element (Asymmetric) -->
+<div class="mt-panel-margin opacity-40">
+<div class="w-64 h-[1px] bg-outline-variant"></div>
+<p class="mt-4 font-body-sm text-body-sm text-muted-slate italic">
+                Last updated: 4 minutes ago via Telemetry Cluster 4
+            </p>
+</div>
+</main>
+<!-- Floating Command Palette (Shared Component Logic) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-8 px-gutter">
+<div class="smoke-glass backdrop-blur-xl shadow-2xl shadow-black/5 rounded-full px-6 py-3 flex items-center gap-6 border border-white/20">
+<!-- Search/Command Trigger -->
+<button class="flex items-center gap-3 px-4 py-2 text-soft-graphite hover:bg-surface-container-highest rounded-full transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'opsz' 20;">search</span>
+<span class="font-label-caps text-label-caps">Search Command</span>
+</button>
+<div class="w-[1px] h-6 bg-outline-variant/30"></div>
+<!-- Contextual Actions -->
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 bg-primary text-on-primary rounded-full px-5 py-2.5 font-label-caps text-label-caps hover:opacity-90 transition-opacity active:scale-95">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+                    New Note
+                </button>
+<button class="flex items-center gap-2 text-soft-graphite hover:bg-surface-container-highest rounded-full px-5 py-2.5 transition-all duration-300 font-label-caps text-label-caps active:scale-95">
+<span class="material-symbols-outlined text-[18px]">biotech</span>
+                    Order Labs
+                </button>
+<button class="flex items-center gap-2 text-soft-graphite hover:bg-surface-container-highest rounded-full px-5 py-2.5 transition-all duration-300 font-label-caps text-label-caps active:scale-95">
+<span class="material-symbols-outlined text-[18px]">group</span>
+                    Consult Team
+                </button>
+</div>
+</div>
+</nav>
+<!-- Subtle Background Detail -->
+<div class="fixed top-0 right-0 p-gutter pointer-events-none opacity-20">
+<div class="text-right">
+<span class="font-label-caps text-label-caps block text-muted-slate">Aether System v4.0</span>
+<span class="font-label-caps text-label-caps block text-muted-slate">St. Jude Medical Center</span>
+</div>
+</div>
+<script>
+        // Micro-interaction for sparklines simulation
+        function animateSparklines() {
+            const bars = document.querySelectorAll('.spark-bar');
+            bars.forEach(bar => {
+                if (Math.random() > 0.7) {
+                    const randomHeight = Math.floor(Math.random() * 12) + 4;
+                    bar.style.height = `${randomHeight}px`;
+                }
+            });
+        }
+        setInterval(animateSparklines, 2000);
+
+        // Active state transition simulation
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.style.opacity = '0.7';
+                setTimeout(() => btn.style.opacity = '1', 150);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Copilot OS | Clinical Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fbf8ff",
+                        "on-secondary-container": "#616362",
+                        "inverse-primary": "#c8c5ca",
+                        "surface-dim": "#dad9e3",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e3e1ec",
+                        "muted-slate": "#71717A",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-container-highest": "#e3e1ec",
+                        "inverse-on-surface": "#f1effa",
+                        "smoke-glass": "rgba(255, 255, 255, 0.75)",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#1a1c1c",
+                        "surface-container": "#eeedf7",
+                        "primary-fixed-dim": "#c8c5ca",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#858387",
+                        "tertiary-fixed": "#e2e2e2",
+                        "inverse-surface": "#2f3038",
+                        "outline-variant": "#c8c5cb",
+                        "clinical-error": "#DC2626",
+                        "surface-container-low": "#f4f2fd",
+                        "on-primary-fixed": "#1b1b1e",
+                        "surface-container-high": "#e8e7f1",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#000000",
+                        "secondary-container": "#dfe0df",
+                        "warm-white": "#FAFAF9",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "outline": "#77767b",
+                        "primary-fixed": "#e4e1e6",
+                        "on-primary-fixed-variant": "#47464a",
+                        "soft-graphite": "#3F3F46",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "border-subtle": "#E4E4E7",
+                        "on-error": "#ffffff",
+                        "on-background": "#1a1b22",
+                        "primary-container": "#1b1b1e",
+                        "primary": "#000000",
+                        "secondary-fixed-dim": "#c6c7c6",
+                        "secondary": "#5d5f5e",
+                        "surface-tint": "#5f5e61",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fbf8ff",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-surface-variant": "#47464b",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-container": "#838484",
+                        "on-surface": "#1a1b22",
+                        "surface-bright": "#fbf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "panel-margin": "48px",
+                        "container-max": "1200px",
+                        "gutter": "32px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-md-mobile": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "500"}],
+                        "headline-sm": ["18px", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "headline-md-mobile": ["20px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fbf8ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .soft-touch-shadow { box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04); }
+        .glass-panel { backdrop-filter: blur(16px); background-color: rgba(255, 255, 255, 0.75); }
+        .thin-border { border: 1px solid #E4E4E7; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .active-glow { position: relative; }
+        .active-glow::after { content: ''; position: absolute; left: 0; top: 25%; bottom: 25%; width: 3px; background: #000; border-radius: 0 2px 2px 0; }
+    </style>
+</head>
+<body class="text-on-background overflow-hidden flex h-screen">
+<!-- Sidebar: Fixed Clinical Left Panel -->
+<aside class="flex flex-col h-full w-72 bg-surface-container-low border-r border-outline-variant/20 z-40">
+<!-- Brand Header from JSON -->
+<div class="p-6 flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">biotech</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-semibold text-primary">Copilot OS</h1>
+<p class="font-body-sm text-body-sm text-muted-slate">Clinical Intelligence</p>
+</div>
+</div>
+<button class="mt-6 w-full py-3 bg-soft-graphite text-white rounded-xl font-body-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Analysis
+            </button>
+</div>
+<!-- Navigation Context -->
+<nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto scrollbar-hide">
+<div class="mb-6">
+<label class="px-2 font-label-caps text-label-caps text-muted-slate uppercase mb-3 block">Primary Navigation</label>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-medium transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-sm">Patients</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-muted-slate hover:bg-surface-variant/50 hover:text-soft-graphite rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-sm">Recent Nodes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-muted-slate hover:bg-surface-variant/50 hover:text-soft-graphite rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-sm">Clinical Data</span>
+</a>
+</div>
+</div>
+<!-- Patient List (Specific Requirement) -->
+<div>
+<label class="px-2 font-label-caps text-label-caps text-muted-slate uppercase mb-3 block">Active Patients</label>
+<div class="space-y-2">
+<div class="p-3 bg-white soft-touch-shadow rounded-xl active-glow transition-all cursor-pointer border border-transparent hover:border-outline-variant/30">
+<div class="flex justify-between items-center">
+<span class="font-body-sm font-semibold text-soft-graphite">P-882 (AJ)</span>
+<span class="w-2 h-2 rounded-full bg-blue-400"></span>
+</div>
+<p class="text-[12px] text-muted-slate mt-1">Stable • Post-Op Day 2</p>
+</div>
+<div class="p-3 bg-transparent hover:bg-white/50 rounded-xl transition-all cursor-pointer border border-transparent">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-soft-graphite">P-914 (MT)</span>
+<span class="w-2 h-2 rounded-full bg-clinical-error"></span>
+</div>
+<p class="text-[12px] text-muted-slate mt-1">Elevated HR • Labs Pending</p>
+</div>
+<div class="p-3 bg-transparent hover:bg-white/50 rounded-xl transition-all cursor-pointer border border-transparent">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-soft-graphite">P-702 (SK)</span>
+<span class="w-2 h-2 rounded-full bg-slate-300"></span>
+</div>
+<p class="text-[12px] text-muted-slate mt-1">Discharge Planning</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Footer from JSON -->
+<div class="p-4 mt-auto border-t border-outline-variant/10">
+<div class="flex items-center gap-3 px-3 py-2 text-muted-slate hover:text-soft-graphite cursor-pointer transition-all">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-label-caps text-label-caps uppercase">System Operational</span>
+</div>
+<div class="mt-4 flex flex-col gap-1 px-3 text-[10px] text-muted-slate/60">
+<span>© 2024 Copilot OS.</span>
+<div class="flex gap-2">
+<a class="hover:underline" href="#">Privacy</a>
+<a class="hover:underline" href="#">Terms</a>
+<a class="hover:underline" href="#">HIPAA</a>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col min-w-0 bg-background relative">
+<!-- Patient Context Top Bar (Sticky/Smoke Glass) -->
+<header class="sticky top-0 z-30 h-16 w-full glass-panel border-b border-outline-variant/30 px-8 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm font-bold text-soft-graphite leading-tight">P-882 (AJ)</h2>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+<span class="font-label-caps text-label-caps text-muted-slate">Inpatient • Room 402-B</span>
+</div>
+</div>
+<div class="h-8 w-px bg-outline-variant/40 mx-2"></div>
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-muted-slate">BP</span>
+<span class="font-body-sm font-medium text-soft-graphite">118/74</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-muted-slate">HR</span>
+<span class="font-body-sm font-medium text-soft-graphite">72 bpm</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-muted-slate">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-muted-slate">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/30 ml-2 overflow-hidden">
+<img alt="Clinician Profile" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a medical doctor in clinical attire, set against a blurred medical facility background with soft, natural morning light. The aesthetic is clean, trustworthy, and high-key, reflecting a modern healthcare environment with a calm and focused atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnL9w_Da-OdISN1YR-0LkOQDuSv7qvMISyLbofnFzbPB2hEh818SbeDnQaP3EIB4mv3x8VI9lyex3TGhsLy8zCCiFO8gfY9vnsof-w0LlP75FNgBxHlubXj-RDWa6aqXZy4ELxLpFtxIvaBkmdpOYfWGmsqoagXERw0K0nA7N1L5PW7m2wFPhmcIOmSQFoE5Gy7jIKlk1TIGOtcd2mgqPtdt6TqfMHE4V3s2wLHReI7Jegj9F-GywGkQTW-dwuzia42J9cB9GcFatR"/>
+</div>
+</div>
+</header>
+<!-- Conversational Canvas -->
+<div class="flex-1 overflow-y-auto scrollbar-hide px-panel-margin py-10 max-w-container-max mx-auto w-full flex flex-col gap-10">
+<!-- User Query -->
+<div class="flex flex-col items-center">
+<div class="w-full max-w-3xl border-b border-outline-variant/20 pb-8">
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-muted-slate mt-1 shrink-0">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-body-lg text-body-lg text-soft-graphite">Review the last 24 hours of P-882's vital stability and laboratory trends for potential discharge criteria.</h3>
+<span class="font-body-sm text-body-sm text-muted-slate/60">Today at 10:45 AM</span>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Response Card -->
+<div class="flex flex-col items-center">
+<div class="w-full max-w-3xl bg-white soft-touch-shadow rounded-[24px] p-8 space-y-6 border border-white">
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary mt-1 shrink-0">
+<span class="material-symbols-outlined text-[18px]">clinical_notes</span>
+</div>
+<div class="space-y-4 flex-1">
+<header class="flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary">Clinical Reasoning Analysis</h3>
+<div class="flex gap-2">
+<span class="px-2.5 py-1 bg-surface-container-low text-soft-graphite font-label-caps text-label-caps rounded-full border border-outline-variant/10">Confidence: 98%</span>
+</div>
+</header>
+<p class="font-body-lg text-body-lg text-soft-graphite leading-relaxed">
+                                Patient P-882 (AJ) demonstrates strong physiological recovery post-orthopedic intervention. Current metrics suggest readiness for transition to outpatient care, pending surgical team review of the final imaging.
+                            </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-background rounded-xl border border-outline-variant/10">
+<h4 class="font-label-caps text-label-caps text-muted-slate mb-2">VITAL TRENDS</h4>
+<div class="h-16 w-full flex items-end gap-1 mb-2">
+<!-- Mock Chart -->
+<div class="w-full h-[60%] bg-blue-100 rounded-sm"></div>
+<div class="w-full h-[65%] bg-blue-200 rounded-sm"></div>
+<div class="w-full h-[62%] bg-blue-300 rounded-sm"></div>
+<div class="w-full h-[70%] bg-blue-400 rounded-sm"></div>
+<div class="w-full h-[68%] bg-blue-500 rounded-sm"></div>
+</div>
+<p class="text-[12px] text-soft-graphite font-medium">Normotensive (avg 116/72)</p>
+</div>
+<div class="p-4 bg-background rounded-xl border border-outline-variant/10">
+<h4 class="font-label-caps text-label-caps text-muted-slate mb-2">LABORATORY</h4>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="text-[12px] text-muted-slate">WBC Count</span>
+<span class="text-[12px] text-soft-graphite font-medium">8.2 (Normal)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[12px] text-muted-slate">Hgb</span>
+<span class="text-[12px] text-soft-graphite font-medium">13.4 g/dL</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4 flex gap-4">
+<button class="px-4 py-2 bg-soft-graphite text-white rounded-xl font-body-sm hover:opacity-90 transition-all">Generate Discharge Summary</button>
+<button class="px-4 py-2 border border-outline-variant text-soft-graphite rounded-xl font-body-sm hover:bg-surface-container-low transition-all">Flag for Nursing</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- User Query 2 (Divider style) -->
+<div class="flex flex-col items-center">
+<div class="w-full max-w-3xl border-b border-outline-variant/20 pb-8">
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-muted-slate mt-1 shrink-0">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-body-lg text-body-lg text-soft-graphite">Are there any contraindications with his current antihypertensive regimen and the prescribed analgesic?</h3>
+<span class="font-body-sm text-body-sm text-muted-slate/60">Today at 10:52 AM</span>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Response 2 (Ongoing) -->
+<div class="flex flex-col items-center mb-24">
+<div class="w-full max-w-3xl bg-white soft-touch-shadow rounded-[24px] p-8 space-y-4 border border-white animate-pulse">
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary mt-1 shrink-0">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+</div>
+<div class="space-y-2 flex-1">
+<h3 class="font-body-lg text-body-lg text-soft-graphite">Analyzing medication safety profiles...</h3>
+<div class="w-1/2 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary/20 w-1/3"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Reasoning Context Panel (Docked Right) -->
+<div class="absolute right-8 top-24 w-64 flex flex-col gap-4 z-20 pointer-events-none">
+<div class="pointer-events-auto bg-smoke-glass backdrop-blur-md rounded-2xl p-4 border border-outline-variant/20 soft-touch-shadow transition-all hover:translate-y-[-2px]">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-muted-slate text-[16px]">visibility</span>
+<span class="font-label-caps text-label-caps text-muted-slate uppercase">Reasoning Context</span>
+</div>
+<div class="space-y-3">
+<div class="flex flex-col">
+<span class="text-[10px] text-muted-slate mb-1">DATA NODES ANALYZED</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-blue-50 border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-blue-500">lab_panel</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-green-50 border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-green-500">ecg_heart</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-purple-50 border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-purple-500">description</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-muted-slate mb-1">ONTOLOGY MATCH</span>
+<span class="text-[12px] font-medium text-soft-graphite">ICD-10-CM Z47.1</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Area (Linear Style) -->
+<footer class="absolute bottom-0 left-0 right-0 p-8 flex justify-center pointer-events-none">
+<div class="w-full max-w-3xl pointer-events-auto">
+<div class="relative group">
+<div class="absolute inset-0 bg-white/20 blur-xl group-focus-within:bg-white/40 transition-all rounded-2xl"></div>
+<div class="relative bg-white soft-touch-shadow border border-outline-variant/40 rounded-2xl p-2 flex items-center gap-2">
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-lg text-body-lg px-4 text-soft-graphite placeholder-muted-slate/50" placeholder="Ask Copilot about P-882..." type="text"/>
+<div class="flex items-center gap-1 px-2">
+<button class="p-2 text-muted-slate hover:text-soft-graphite hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<button class="w-10 h-10 bg-soft-graphite text-white rounded-xl flex items-center justify-center hover:bg-black transition-all">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-3 gap-6">
+<div class="flex items-center gap-1.5 opacity-40 hover:opacity-100 transition-opacity cursor-help">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span class="font-label-caps text-label-caps uppercase">HIPAA Encrypted</span>
+</div>
+<div class="flex items-center gap-1.5 opacity-40 hover:opacity-100 transition-opacity cursor-help">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="font-label-caps text-label-caps uppercase">GPT-4 Medical Tuned</span>
+</div>
+</div>
+</div>
+</footer>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Subtle hover effect for the reasoning panel
+            const panel = document.querySelector('.glass-panel');
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                if (scrolled > 20) {
+                    panel.classList.add('shadow-sm');
+                } else {
+                    panel.classList.remove('shadow-sm');
+                }
+            });
+
+            // Input focus effect
+            const input = document.querySelector('input');
+            const inputContainer = input.closest('.relative');
+            input.addEventListener('focus', () => {
+                inputContainer.classList.add('ring-2', 'ring-primary/5');
+            });
+            input.addEventListener('blur', () => {
+                inputContainer.classList.remove('ring-2', 'ring-primary/5');
+            });
+        });
+    </script>
+</body></html>

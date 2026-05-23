@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClinicalOS - Patient Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background-warm": "#F6F4EE",
+                        "surface-ivory": "#FCFBF8",
+                        "soft-slate": "#3F4249",
+                        "muted-sage": "#7A8C7A",
+                        "desaturated-blue": "#5B7A8B",
+                        "outline-soft": "#E4DFD6",
+                        "error-muted": "#B26666",
+                        "primary": "#7A8C7A",
+                        "on-primary": "#ffffff",
+                        "secondary": "#5B7A8B",
+                        "on-surface": "#3F4249",
+                        "on-surface-variant": "#6B6E76"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.25rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "content-max-width": "900px",
+                        "card-gap": "48px",
+                        "margin-page": "64px",
+                        "gutter": "32px"
+                    },
+                    "fontFamily": {
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                        "display-lg": ["42px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-sm": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20; }
+        .soft-shadow { box-shadow: 0 12px 40px -12px rgba(63, 66, 73, 0.08); }
+        .fade-in { animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-background-warm text-soft-slate min-h-screen">
+<!-- Integrated Navigation -->
+<header class="w-full pt-12 pb-6 px-margin-page">
+<div class="max-w-content-max-width mx-auto flex justify-between items-center">
+<div class="flex items-center gap-12">
+<span class="text-headline-sm font-bold tracking-tight text-soft-slate">ClinicalOS</span>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-body-sm font-medium text-on-surface-variant hover:text-soft-slate transition-colors" href="#">Dashboard</a>
+<a class="text-body-sm font-semibold text-soft-slate border-b-2 border-soft-slate pb-0.5" href="#">Patients</a>
+<a class="text-body-sm font-medium text-on-surface-variant hover:text-soft-slate transition-colors" href="#">Schedules</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-soft-slate">notifications</span>
+<div class="w-9 h-9 rounded-full overflow-hidden border border-outline-soft">
+<img alt="Provider" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-q3IvDnbn8SxmAEHdyjdoR0A6v_JuUGRVDwkH7HwlnwyrHl2XLQcHg10oV3YmELdhnmQFAM9DkRuIKku_Y96C1hKYGuYsMOANnUsqpFkdddPWF0kCp36O79JTT3a03ifuDiu10_ufrmlmbv2sWqiDqBsqqQCXbiIYNcIQIs9phlUhNeRr3dFpHFADnPZ9zsYgIO3Pwfpjv6syoLDXvJ_mPTDIULIft6DvNqkVZSKop9vKaFgvMfcMZbBfNRARc1DYyuS-AvS935UP"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-content-max-width mx-auto px-6 pb-24 fade-in">
+<!-- Patient Header -->
+<section class="mb-16 mt-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 rounded-2xl overflow-hidden border border-outline-soft">
+<img alt="Sarah Jenkins" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA56kuiIQWRr_-wchEdLJ29lW22XbyVWcYgtRRK7d3f3vmv1zT5luCE1IM3HzXnHn2JLQXXYOUY9AW-nWt_zutsUo_eQ61oZlLnj7OpBru3jjm1bH7Cx7QmtjJVm4D6CIMTbI3h87dv1nxws_GKZSE4mm5sKsKWVsGC3sFOM1hEbEaiiJrUaoqmzM8YDVbOU4CdnE1sXJdXoU9VO5Y_RJgTA6ngnAwi2Ajs70nh6KqLMNZIZ5m42r4U5m4tyPSF49lWtBIJdSpLW30r"/>
+</div>
+<div>
+<nav class="text-label-caps text-on-surface-variant uppercase mb-2">Patient • Active Care</nav>
+<h1 class="text-display-lg font-bold text-soft-slate">Sarah Jenkins, 42F</h1>
+<div class="flex gap-4 mt-2">
+<span class="text-body-sm text-on-surface-variant">MRN: 884-219-00</span>
+<span class="text-body-sm font-semibold text-muted-sage">• Room 402, North Wing</span>
+</div>
+</div>
+</div>
+<button class="bg-muted-sage text-white px-6 py-3 rounded-full text-body-sm font-semibold hover:opacity-95 transition-opacity flex items-center gap-2 soft-shadow">
+<span class="material-symbols-outlined !text-[20px]">add</span> New Analysis
+        </button>
+</section>
+<!-- Central Workspace -->
+<div class="space-y-card-gap">
+<!-- Conversational Area -->
+<section class="bg-surface-ivory rounded-2xl p-10 soft-shadow border border-outline-soft">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-desaturated-blue" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="text-headline-sm font-semibold text-soft-slate">Clinical Intelligence Summary</h3>
+</div>
+<div class="space-y-6 max-w-[720px]">
+<p class="text-body-lg text-soft-slate leading-relaxed">
+                    The patient is showing an exceptionally stable recovery trajectory following her successful <span class="font-semibold border-b border-desaturated-blue/30">robotic-assisted cholecystectomy</span> performed 48 hours ago. Surgical sites appear clean, dry, and intact with no signs of erythema or drainage.
+                </p>
+<p class="text-body-lg text-soft-slate leading-relaxed">
+                    Pain management has been effectively transitioned to oral analgesics, with the patient reporting a current pain score of <span class="text-muted-sage font-bold">2/10</span>. Normal gastrointestinal motility has returned.
+                </p>
+<div class="mt-12 pt-8 border-t border-outline-soft">
+<span class="text-label-caps text-on-surface-variant uppercase">Recommended Next Steps</span>
+<ul class="mt-4 space-y-3">
+<li class="flex items-start gap-3 text-body-sm text-soft-slate">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-muted-sage flex-shrink-0"></span>
+                            Finalize electrolyte panel review for discharge clearance.
+                        </li>
+<li class="flex items-start gap-3 text-body-sm text-soft-slate">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-muted-sage flex-shrink-0"></span>
+                            Consult physical therapy for final mobility assessment.
+                        </li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Minimal Insights Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-card-gap">
+<!-- Textual Telemetry -->
+<section class="bg-surface-ivory/50 rounded-2xl p-8 border border-outline-soft/60">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-label-caps text-on-surface-variant uppercase">Key Telemetry</h4>
+<span class="text-[11px] text-on-surface-variant/70 italic">Updated 2m ago</span>
+</div>
+<div class="space-y-5">
+<div class="flex justify-between items-end">
+<span class="text-body-sm">Heart Rate</span>
+<div class="text-right">
+<span class="text-headline-sm font-bold">72</span> <span class="text-body-sm text-on-surface-variant">bpm</span>
+<div class="text-[11px] text-muted-sage font-medium">Stable</div>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-body-sm">SpO2</span>
+<div class="text-right">
+<span class="text-headline-sm font-bold">98</span> <span class="text-body-sm text-on-surface-variant">%</span>
+<div class="text-[11px] text-muted-sage font-medium">Optimal</div>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-body-sm">Mean BP</span>
+<div class="text-right">
+<span class="text-headline-sm font-bold">94</span> <span class="text-body-sm text-on-surface-variant">mmHg</span>
+<div class="text-[11px] text-muted-sage font-medium">Normal</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Risk Summary -->
+<section class="bg-surface-ivory/50 rounded-2xl p-8 border border-outline-soft/60">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-label-caps text-on-surface-variant uppercase">Risk Analysis</h4>
+<span class="material-symbols-outlined text-desaturated-blue">analytics</span>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-body-sm">Discharge Probability</span>
+<span class="text-body-sm font-bold text-muted-sage">92%</span>
+</div>
+<div class="w-full bg-outline-soft/40 h-1 rounded-full">
+<div class="bg-muted-sage h-full rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-body-sm">Infection Risk</span>
+<span class="text-body-sm font-medium">Low (3%)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-sm">Electrolyte Stability</span>
+<span class="text-body-sm font-medium">Stable</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Metadata / Footer section -->
+<section class="pt-12 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-outline-soft/30">
+<div>
+<span class="text-label-caps text-on-surface-variant uppercase">Admitting Team</span>
+<p class="mt-2 text-body-sm font-medium">Dr. Aris Thorne, MD</p>
+<p class="text-[13px] text-on-surface-variant">Surgical Oncology</p>
+</div>
+<div>
+<span class="text-label-caps text-on-surface-variant uppercase">Critical Alerts</span>
+<p class="mt-2 text-body-sm font-bold text-error-muted">Penicillin Allergy (Severe)</p>
+</div>
+<div class="flex md:justify-end items-center gap-4">
+<button class="text-desaturated-blue hover:text-soft-slate text-body-sm font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">print</span> Print
+                </button>
+<button class="text-desaturated-blue hover:text-soft-slate text-body-sm font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">share</span> Share
+                </button>
+</div>
+</section>
+</div>
+</main>
+<footer class="w-full border-t border-outline-soft/30 py-12 px-margin-page">
+<div class="max-w-content-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<span class="text-[13px] text-on-surface-variant">
+            © 2024 ClinicalOS • High Fidelity Clinical Intelligence
+        </span>
+<div class="flex gap-8">
+<a class="text-[13px] text-on-surface-variant hover:text-soft-slate" href="#">Privacy</a>
+<a class="text-[13px] text-on-surface-variant hover:text-soft-slate" href="#">HIPAA Compliance</a>
+<a class="text-[13px] text-on-surface-variant hover:text-soft-slate" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

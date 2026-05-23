@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Analytics // P-882</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e3e1ec",
+                    "surface-dim": "#dad9e3",
+                    "primary": "#000000",
+                    "secondary-fixed-dim": "#c6c7c6",
+                    "tertiary": "#000000",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2f3038",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e3e1ec",
+                    "soft-graphite": "#3F3F46",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-primary-fixed-variant": "#47464a",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline": "#77767b",
+                    "surface-container": "#eeedf7",
+                    "secondary": "#5d5f5e",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "surface-bright": "#fbf8ff",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-secondary-fixed-variant": "#454747",
+                    "primary-container": "#1b1b1e",
+                    "muted-slate": "#71717A",
+                    "on-secondary": "#ffffff",
+                    "warm-white": "#FAFAF9",
+                    "primary-fixed": "#e4e1e6",
+                    "on-tertiary-container": "#838484",
+                    "surface": "#fbf8ff",
+                    "tertiary-container": "#1a1c1c",
+                    "tertiary-fixed": "#e2e2e2",
+                    "inverse-on-surface": "#f1effa",
+                    "secondary-container": "#dfe0df",
+                    "surface-tint": "#5f5e61",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1a1b22",
+                    "inverse-primary": "#c8c5ca",
+                    "surface-container-low": "#f4f2fd",
+                    "on-primary-container": "#858387",
+                    "background": "#fbf8ff",
+                    "surface-container-high": "#e8e7f1",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "clinical-error": "#DC2626",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#616362",
+                    "on-primary-fixed": "#1b1b1e",
+                    "error": "#ba1a1a",
+                    "border-subtle": "#E4E4E7",
+                    "smoke-glass": "rgba(255, 255, 255, 0.75)",
+                    "outline-variant": "#c8c5cb",
+                    "on-surface-variant": "#47464b",
+                    "on-surface": "#1a1b22",
+                    "primary-fixed-dim": "#c8c5ca"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "container-max": "1200px",
+                    "panel-margin": "48px",
+                    "gutter": "32px"
+            },
+            "fontFamily": {
+                    "headline-md-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-caps": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md-mobile": ["20px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-sm": ["18px", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+        .canvas-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .sparkline-svg {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 3s ease-in-out forwards;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body class="bg-warm-white font-body-lg text-soft-graphite flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="docked full-height left-0 w-72 flex flex-col bg-surface border-r border-border-subtle z-50">
+<div class="flex flex-col h-full py-12 px-4 gap-6">
+<!-- Brand Header -->
+<div class="px-4 mb-4">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-soft-graphite">Copilot OS</h2>
+<p class="font-label-caps text-label-caps text-muted-slate uppercase tracking-wider">Intelligence Workspace</p>
+</div>
+<!-- CTA -->
+<button class="mx-4 bg-soft-graphite text-white font-medium py-3 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>New Encounter</span>
+</button>
+<!-- Nav Items -->
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-surface-container-high text-primary font-semibold rounded-xl translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-caps text-label-caps">CLINICAL NODES</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-muted-slate hover:text-soft-graphite hover:bg-surface-container-low rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-label-caps">PATIENT LISTS</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-muted-slate hover:text-soft-graphite hover:bg-surface-container-low rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">monitor_heart</span>
+<span class="font-label-caps text-label-caps">SYSTEM STATUS</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-muted-slate hover:text-soft-graphite hover:bg-surface-container-low rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-caps text-label-caps">ANALYTICS</span>
+</a>
+</nav>
+<!-- Footer Tabs -->
+<div class="pt-6 border-t border-border-subtle space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-muted-slate hover:text-soft-graphite transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">help_outline</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-muted-slate hover:text-soft-graphite transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">tune</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<div class="flex-1 flex flex-col relative overflow-hidden">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 z-40 backdrop-blur-md bg-smoke-glass border-b border-border-subtle shadow-sm flex justify-between items-center px-8 w-full h-16">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-md text-headline-md font-bold text-soft-graphite">Copilot Clinical</h1>
+<div class="h-6 w-px bg-border-subtle mx-2"></div>
+<div class="flex items-center gap-2 text-muted-slate">
+<span class="font-body-sm text-body-sm font-medium">Patient Analytics // P-882</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-soft-graphite hover:bg-surface-container-low p-2 rounded-full cursor-pointer transition-colors">notifications</span>
+<span class="material-symbols-outlined text-soft-graphite hover:bg-surface-container-low p-2 rounded-full cursor-pointer transition-colors">settings</span>
+<span class="material-symbols-outlined text-soft-graphite hover:bg-surface-container-low p-2 rounded-full cursor-pointer transition-colors">help</span>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-border-subtle">
+<img alt="Medical provider profile" class="w-8 h-8 rounded-full object-cover grayscale brightness-110" data-alt="A professional portrait of a medical provider wearing a white lab coat, presented in a clean, high-key studio setting. The lighting is soft and even, highlighting a calm and trustworthy expression. The background is a minimalist light gray, maintaining a premium medical aesthetic consistent with the clinical software environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8fRe7ibDi6zpXdUsGhvlDWefCY1ctNZ5kjDcW-tuO4Pdvg7IMTPsem1qJq9MJLfQEMas4598VZlk4Hpc4_lsWMtUIpqj4lbJh-G5HsUTc4wYiFdskWVZxu1OKHi9adIpvhwQbeDWxFl3W00H8AiE2xV-EFXvlK87wKaIUqXWBJE6URaHvBI8C3YJXQPYi4UbOAUwvtajbJAoBDkH94AjRgl-ZiaHrY5wioZyUsD7B6yznIlpBDEMC1mG0fttUiZS0b71jHHDP3lEA"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter relative">
+<div class="canvas-container space-y-8 pb-12">
+<!-- Patient Status Summary (Hero) -->
+<section class="animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="bg-white rounded-xl p-8 soft-shadow border border-border-subtle flex flex-col md:flex-row gap-8 items-start">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-2 py-1 bg-surface-container-high rounded text-[10px] font-bold text-soft-graphite uppercase tracking-widest">Active Insight</span>
+<span class="text-muted-slate font-label-caps text-label-caps">Last updated 2m ago</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-soft-graphite mb-4">Clinical Reasoning Summary</h2>
+<p class="font-body-lg text-body-lg text-soft-graphite leading-relaxed max-w-2xl">
+                                Patient exhibits stable post-operative recovery. Hemodynamic markers remain within nominal range with a slight downward trend in potassium. Respiratory effort is unlabored on 2L NC. Recommended focus: monitor electrolyte balance for potential replacement during the next 4-hour window.
+                            </p>
+</div>
+<div class="w-full md:w-64 bg-surface-container-low rounded-xl p-6 border border-border-subtle/50">
+<div class="space-y-4">
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate mb-1">PATIENT ID</p>
+<p class="font-headline-sm text-headline-sm font-semibold">P-882 (AJ)</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate mb-1">ADMISSION</p>
+<p class="font-body-sm text-body-sm">Post-Op Day 2</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate mb-1">CARE TEAM</p>
+<p class="font-body-sm text-body-sm text-primary">Dr. Sarah Jenkins</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Telemetry Vitals -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Heart Rate -->
+<div class="bg-white p-6 rounded-xl soft-shadow border border-border-subtle group hover:border-primary/20 transition-all">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate mb-1">HEART RATE</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md font-bold">72</span>
+<span class="font-body-sm text-body-sm text-muted-slate">bpm</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-clinical-error animate-pulse">favorite</span>
+</div>
+<div class="h-12 w-full">
+<svg class="w-full h-full" viewbox="0 0 100 20">
+<path class="text-soft-graphite/30 sparkline-svg" d="M0 10 Q 10 5, 20 12 T 40 8 T 60 15 T 80 5 T 100 10" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<!-- SpO2 -->
+<div class="bg-white p-6 rounded-xl soft-shadow border border-border-subtle group hover:border-primary/20 transition-all">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate mb-1">SPO2</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md font-bold">98</span>
+<span class="font-body-sm text-body-sm text-muted-slate">%</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-muted-slate">air</span>
+</div>
+<div class="h-12 w-full">
+<svg class="w-full h-full" viewbox="0 0 100 20">
+<path class="text-soft-graphite/30 sparkline-svg" d="M0 10 L 10 9 L 20 10 L 30 10 L 40 10 L 50 9.5 L 60 10 L 70 10 L 80 10 L 90 9.5 L 100 10" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<!-- Blood Pressure -->
+<div class="bg-white p-6 rounded-xl soft-shadow border border-border-subtle group hover:border-primary/20 transition-all">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate mb-1">BLOOD PRESSURE</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md font-bold">118/74</span>
+<span class="font-body-sm text-body-sm text-muted-slate">mmHg</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-muted-slate">speed</span>
+</div>
+<div class="h-12 w-full">
+<svg class="w-full h-full" viewbox="0 0 100 20">
+<path class="text-soft-graphite/30 sparkline-svg" d="M0 12 Q 25 2, 50 12 T 100 12" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+</section>
+<!-- Patient Visualization Placeholder -->
+<section class="h-80 bg-white rounded-xl soft-shadow border border-border-subtle overflow-hidden relative group">
+<img alt="Abstract medical data visualization" class="w-full h-full object-cover opacity-60 mix-blend-multiply" data-alt="An abstract medical data visualization featuring soft, organic 3D fluid forms in muted shades of slate, charcoal, and warm off-white. The shapes intersect gracefully, suggesting complex biological data structures. The lighting is diffused and professional, creating a sense of calm intelligence and high-fidelity technological precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcBuV7crP7RiuxDmlfCCs_UHoY5Gn59T_VKLf57dtUGgs-VGhbkQ-TfFZiWpcDTMYy7La1FBbshjmtgEZwIYWWO4XsvqaI9xqGt2v56igwR_ekkHIkRU_1eWIUJaCg24ET3nG8SUssm9dOf0wPawLmzhxRm-n-5WztYd29x7XuBqgRDokjLZMaC1ArI_79Q1ydOCtWjnD5EQXxkmlP5rvfJgjzEklbE_Nhj2zMOT9evLpvLklZy-tLCzhsWtICpmfS15dgnTgxi0q0"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-gradient-to-t from-white via-transparent to-transparent">
+<span class="material-symbols-outlined text-4xl mb-4 text-muted-slate">biotech</span>
+<h3 class="font-headline-sm text-headline-sm text-soft-graphite">Longitudinal Recovery Trend</h3>
+<p class="text-muted-slate font-body-sm text-body-sm mt-2 max-w-sm">Aggregated telemetry data indicates a consistent 12% improvement in mobility markers over the last 24 hours.</p>
+</div>
+</section>
+</div>
+</main>
+<!-- Clinical Events Log (Smoke Glass Floating Container) -->
+<aside class="fixed right-8 top-24 w-80 glass-panel rounded-2xl soft-shadow border border-border-subtle/50 p-6 z-30 transition-all hover:shadow-xl">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-soft-graphite">Events Log</h3>
+<span class="flex h-2 w-2 rounded-full bg-clinical-error"></span>
+</div>
+<div class="space-y-6 relative">
+<!-- Vertical Timeline Line -->
+<div class="absolute left-[11px] top-2 bottom-2 w-px bg-border-subtle"></div>
+<div class="flex gap-4 relative">
+<div class="mt-1 h-6 w-6 rounded-full bg-white border border-border-subtle flex items-center justify-center z-10">
+<div class="h-2 w-2 rounded-full bg-soft-graphite"></div>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate">09:42</p>
+<p class="font-body-sm text-body-sm text-soft-graphite">Vitals synchronized with central telemetry</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="mt-1 h-6 w-6 rounded-full bg-white border border-border-subtle flex items-center justify-center z-10">
+<div class="h-2 w-2 rounded-full bg-muted-slate/40"></div>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate">08:15</p>
+<p class="font-body-sm text-body-sm text-soft-graphite">Potassium lab results updated (3.4 mmol/L)</p>
+</div>
+</div>
+<div class="flex gap-4 relative opacity-60">
+<div class="mt-1 h-6 w-6 rounded-full bg-white border border-border-subtle flex items-center justify-center z-10">
+<div class="h-2 w-2 rounded-full bg-muted-slate/40"></div>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate">07:00</p>
+<p class="font-body-sm text-body-sm text-soft-graphite">Shift handover complete: Nurse R. Miller</p>
+</div>
+</div>
+<div class="flex gap-4 relative opacity-60">
+<div class="mt-1 h-6 w-6 rounded-full bg-white border border-border-subtle flex items-center justify-center z-10">
+<div class="h-2 w-2 rounded-full bg-muted-slate/40"></div>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-muted-slate">06:45</p>
+<p class="font-body-sm text-body-sm text-soft-graphite">Wound dressing inspected; dry and intact</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-center text-muted-slate font-label-caps text-label-caps hover:text-soft-graphite transition-colors">
+                VIEW FULL FEED
+            </button>
+</aside>
+<!-- Context Bar Footer -->
+<footer class="h-12 glass-panel border-t border-border-subtle px-8 flex items-center justify-between z-40">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-label-caps text-label-caps text-muted-slate">SYSTEM ONLINE</span>
+</div>
+<div class="h-4 w-px bg-border-subtle"></div>
+<span class="font-body-sm text-body-sm text-muted-slate italic">AI Copilot: Monitoring electrolyte drift...</span>
+</div>
+<div class="flex gap-4">
+<span class="font-label-caps text-label-caps text-muted-slate">LATENCY: 14MS</span>
+<span class="font-label-caps text-label-caps text-muted-slate">ENCRYPTION: AES-256</span>
+</div>
+</footer>
+</div>
+<script>
+        // Simple micro-interaction for vitals
+        const vitalCards = document.querySelectorAll('.group');
+        vitalCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0px)';
+            });
+        });
+
+        // Atmospheric fade-in for SVG sparks
+        window.addEventListener('DOMContentLoaded', () => {
+            const paths = document.querySelectorAll('.sparkline-svg');
+            paths.forEach(path => {
+                const length = path.getTotalLength();
+                path.style.strokeDasharray = length;
+                path.style.strokeDashoffset = length;
+                path.getBoundingClientRect(); // Trigger reflow
+                path.style.transition = 'stroke-dashoffset 2s ease-in-out';
+                path.style.strokeDashoffset = '0';
+            });
+        });
+    </script>
+</body></html>

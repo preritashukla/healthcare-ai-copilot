@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aether AI | Clinical Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-container": "#7d8497",
+                      "secondary-fixed-dim": "#c8c6c3",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#e2e8f8",
+                      "inverse-primary": "#c0c6db",
+                      "surface-bright": "#f9f9ff",
+                      "inverse-on-surface": "#ebf1ff",
+                      "surface-dim": "#d3daea",
+                      "surface": "#f9f9ff",
+                      "primary-container": "#141b2b",
+                      "warm-beige": "#F7F5F0",
+                      "on-background": "#151c27",
+                      "primary-fixed-dim": "#c0c6db",
+                      "on-error-container": "#93000a",
+                      "on-secondary-container": "#636360",
+                      "primary": "#000000",
+                      "on-primary-fixed": "#141b2b",
+                      "secondary": "#5e5e5c",
+                      "soft-off-white": "#FDFBF7",
+                      "tertiary-container": "#1b1c19",
+                      "outline-variant": "#c6c6cd",
+                      "on-secondary-fixed-variant": "#474744",
+                      "on-primary": "#ffffff",
+                      "background": "#f9f9ff",
+                      "inverse-surface": "#2a313d",
+                      "on-secondary-fixed": "#1b1c1a",
+                      "tertiary-fixed-dim": "#c8c6c2",
+                      "tertiary": "#000000",
+                      "surface-container-highest": "#dce2f3",
+                      "surface-variant": "#dce2f3",
+                      "on-surface": "#151c27",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#575e70",
+                      "primary-fixed": "#dce2f7",
+                      "on-surface-variant": "#45464c",
+                      "on-tertiary-fixed": "#1b1c19",
+                      "on-tertiary-container": "#848480",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "muted-gray": "#6B7280",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#e7eefe",
+                      "on-tertiary-fixed-variant": "#474744",
+                      "outline": "#D1D5DB",
+                      "on-primary-fixed-variant": "#404758",
+                      "surface-container-low": "#f0f3ff",
+                      "tertiary-fixed": "#e4e2dd",
+                      "secondary-fixed": "#e4e2de",
+                      "secondary-container": "#e1dfdc",
+                      "soft-graphite": "#2D2D2D",
+                      "muted-slate": "#94A3B8",
+                      "smoke-glass": "rgba(255, 255, 255, 0.7)"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "2xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1200px",
+                      "margin-desktop": "48px",
+                      "gutter": "32px",
+                      "card-padding": "32px",
+                      "unit": "8px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "display-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "headline-sm": ["18px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FDFBF7;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .main-canvas {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 64px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-transparent pt-8">
+<nav class="flex justify-between items-center max-w-[1200px] mx-auto px-gutter w-full">
+<div class="flex items-center gap-8">
+<span class="font-headline-sm text-headline-sm font-medium tracking-tight text-soft-graphite">Aether AI</span>
+<div class="hidden md:flex gap-6">
+<a class="text-primary font-medium font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Patients</a>
+<a class="text-muted-slate font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Timeline</a>
+<a class="text-muted-slate font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Insights</a>
+</div>
+</div>
+<div class="flex items-center gap-4 text-soft-graphite">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity" data-icon="notifications_none">notifications_none</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity" data-icon="account_circle">account_circle</span>
+</div>
+</nav>
+</header>
+<main class="main-canvas pt-32">
+<!-- Header Section -->
+<section class="mb-16">
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight mb-2">Sarah Jenkins</h1>
+<div class="flex items-center gap-4 text-muted-gray">
+<span class="font-body-lg text-body-lg">42F</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<span class="font-body-lg text-body-lg">Post-op Day 2</span>
+</div>
+</div>
+<div class="pb-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-warm-beige text-secondary font-label-caps text-label-caps">
+                        Active Recovery
+                    </span>
+</div>
+</div>
+</section>
+<!-- Minimal Telemetry -->
+<section class="mb-12 py-4 border-y border-outline-variant/30">
+<div class="flex flex-wrap justify-between gap-8 opacity-70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="favorite">favorite</span>
+<span class="font-label-caps text-label-caps">Vitals: Stable (BP 118/76)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="trending_up">trending_up</span>
+<span class="font-label-caps text-label-caps">Risk: 92% Discharge Prob.</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="medication">medication</span>
+<span class="font-label-caps text-label-caps">Meds: On Schedule</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="schedule">schedule</span>
+<span class="font-label-caps text-label-caps">Next: Neuro Check 14:00</span>
+</div>
+</div>
+</section>
+<!-- Clinical Summary -->
+<article class="mb-16">
+<div class="max-w-[640px]">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed mb-6">
+                    Sarah is recovering exceptionally well following Tuesday's laparoscopic cholecystectomy. Her pain levels have stabilized at a self-reported 2/10 with oral management only.
+                </p>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+                    Mobility is increasing; she completed three laps of the ward this morning without assistance. Primary focus for today is monitoring fluid tolerance and preparing discharge education for her family.
+                </p>
+</div>
+</article>
+<!-- Primary Focus: Copilot Interface -->
+<section class="relative">
+<div class="bg-white rounded-2xl shadow-sm border border-outline-variant/20 p-card-padding">
+<div class="flex items-start gap-4 mb-8">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="psychology" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div class="flex-1">
+<div class="font-headline-sm text-headline-sm mb-1">Aether Copilot</div>
+<p class="text-muted-gray font-body-sm text-body-sm">Deep clinical reasoning enabled</p>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<button class="w-full text-left p-4 rounded-xl hover:bg-warm-beige transition-colors group flex items-center justify-between border border-transparent hover:border-outline-variant/30">
+<span class="font-body-sm text-body-sm text-secondary">"Compare today's lab results with admission baseline."</span>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity text-primary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="w-full text-left p-4 rounded-xl hover:bg-warm-beige transition-colors group flex items-center justify-between border border-transparent hover:border-outline-variant/30">
+<span class="font-body-sm text-body-sm text-secondary">"Draft a discharge summary for Dr. Aris."</span>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity text-primary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="relative">
+<input class="w-full bg-warm-beige border-none rounded-xl py-4 pl-6 pr-12 focus:ring-1 focus:ring-primary/10 font-body-lg text-body-lg placeholder:text-muted-slate transition-all" placeholder="Ask Copilot about Sarah..." type="text"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="north">north</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Floating Contextual) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-safe">
+<div class="bg-smoke-glass backdrop-blur-xl rounded-full mb-8 mx-auto w-max px-6 py-3 shadow-2xl shadow-black/5 flex items-center gap-2">
+<a class="flex flex-row items-center gap-2 text-soft-graphite px-4 py-2 hover:bg-surface-container-highest transition-all duration-300 rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps">Command</span>
+</a>
+<a class="flex flex-row items-center gap-2 text-soft-graphite px-4 py-2 hover:bg-surface-container-highest transition-all duration-300 rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="auto_graph">auto_graph</span>
+<span class="font-label-caps text-label-caps">Timeline</span>
+</a>
+<a class="flex flex-row items-center gap-2 bg-primary text-on-primary rounded-full px-4 py-2 transition-all duration-300 scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Patients</span>
+</a>
+<a class="flex flex-row items-center gap-2 text-soft-graphite px-4 py-2 hover:bg-surface-container-highest transition-all duration-300 rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps">Insights</span>
+</a>
+</div>
+</nav>
+<!-- Background Decorative Element (Subtle Gradient) -->
+<div class="fixed top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-warm-beige/30 to-transparent pointer-events-none -z-10"></div>
+<script>
+        // Micro-interactions for the copilot input
+        const input = document.querySelector('input');
+        input.addEventListener('focus', () => {
+            input.parentElement.parentElement.classList.add('shadow-md');
+            input.parentElement.parentElement.classList.add('border-primary/10');
+        });
+        input.addEventListener('blur', () => {
+            input.parentElement.parentElement.classList.remove('shadow-md');
+            input.parentElement.parentElement.classList.remove('border-primary/10');
+        });
+
+        // Add subtle parallax to the main content
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const hero = document.querySelector('header');
+            hero.style.backgroundColor = scroll > 20 ? 'rgba(253, 251, 247, 0.8)' : 'transparent';
+            hero.classList.toggle('glass-blur', scroll > 20);
+        });
+    </script>
+</body></html>

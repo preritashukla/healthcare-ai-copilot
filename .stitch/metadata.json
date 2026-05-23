@@ -1,0 +1,55 @@
+{
+  "name": "projects/16629736313351857570",
+  "projectId": "16629736313351857570",
+  "title": "Hospital Copilot AI OS",
+  "visibility": "PRIVATE",
+  "projectType": "PROJECT_DESIGN",
+  "origin": "STITCH",
+  "designSystem": "assets/6642484b528c4d6dbb58c5d63cb45c6b",
+  "screens": {
+    "design_md": {
+      "id": "8230893592936258002",
+      "sourceScreen": "projects/16629736313351857570/screens/8230893592936258002"
+    },
+    "login": {
+      "id": "3bc62ba43d634ed890025e1cf5646b66",
+      "sourceScreen": "projects/16629736313351857570/screens/3bc62ba43d634ed890025e1cf5646b66"
+    },
+    "workspace": {
+      "id": "09b84fa366214e33a3b6c09ae11958ac",
+      "sourceScreen": "projects/16629736313351857570/screens/09b84fa366214e33a3b6c09ae11958ac"
+    },
+    "analytics": {
+      "id": "47409da34acf4297abbb3fce8d9635db",
+      "sourceScreen": "projects/16629736313351857570/screens/47409da34acf4297abbb3fce8d9635db"
+    },
+    "ambient_workspace": {
+      "id": "885f743ffe4e4f15a8ba9de2eb29f115",
+      "sourceScreen": "projects/16629736313351857570/screens/885f743ffe4e4f15a8ba9de2eb29f115"
+    },
+    "advanced_ambient_workspace": {
+      "id": "81094a6e9ce6421fadada3feff2aa8c5",
+      "sourceScreen": "projects/16629736313351857570/screens/81094a6e9ce6421fadada3feff2aa8c5"
+    },
+    "saas_workspace": {
+      "id": "51762293af174f5bb81be332730af1ef",
+      "sourceScreen": "projects/16629736313351857570/screens/51762293af174f5bb81be332730af1ef"
+    },
+    "ultra_minimal_workspace": {
+      "id": "bc9270a4ec4c4e199073cf14ca4c3901",
+      "sourceScreen": "projects/16629736313351857570/screens/bc9270a4ec4c4e199073cf14ca4c3901"
+    },
+    "soft_premium_workspace": {
+      "id": "63177e99314242cdbe35e3baed6e0ebd",
+      "sourceScreen": "projects/16629736313351857570/screens/63177e99314242cdbe35e3baed6e0ebd"
+    },
+    "refined_typography_workspace": {
+      "id": "b85eb129d98e4590a638366d171d0232",
+      "sourceScreen": "projects/16629736313351857570/screens/b85eb129d98e4590a638366d171d0232"
+    },
+    "welcome_landing": {
+      "id": "c27a9d48e5714a1eaa11a882eadcc423",
+      "sourceScreen": "projects/16629736313351857570/screens/c27a9d48e5714a1eaa11a882eadcc423"
+    }
+  }
+}

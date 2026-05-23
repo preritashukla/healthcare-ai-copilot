@@ -6,3 +6,7 @@ seaborn
 sentence-transformers
 faiss-cpu
 groq
+fastapi
+uvicorn
+python-multipart
+python-dotenv
